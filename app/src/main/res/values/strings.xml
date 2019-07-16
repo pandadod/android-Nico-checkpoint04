@@ -6,4 +6,5 @@
     <string name="log_in">Log In</string>
     <string name="create_your_account">Create Your account</string>
     <string name="logo">logo</string>
+    <string name="erreur">Erreur de connexion</string>
 </resources>
