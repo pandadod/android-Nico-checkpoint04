@@ -1,4 +1,4 @@
-package com.example.checkpoint04.globalMethode;
+package com.example.checkpoint04.globalMethods;
 
 import android.content.Context;
 import android.os.Build;

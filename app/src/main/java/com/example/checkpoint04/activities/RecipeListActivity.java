@@ -1,7 +1,9 @@
-package com.example.checkpoint04;
+package com.example.checkpoint04.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.checkpoint04.R;
 
 public class RecipeListActivity extends AppCompatActivity {
 
