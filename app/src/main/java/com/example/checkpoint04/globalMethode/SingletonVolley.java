@@ -89,6 +89,7 @@ public class SingletonVolley {
         };
         requestQueue.add(jsonObjectRequest);
     }
+
     public void createAccount(final User user, final Consumer<User> userListener) {
         String url = REQUEST_URL + "/user/create";
         GsonBuilder gsonBuilder = new GsonBuilder();
