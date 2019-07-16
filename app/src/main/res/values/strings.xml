@@ -7,4 +7,8 @@
     <string name="create_your_account">Create Your account</string>
     <string name="logo">logo</string>
     <string name="erreur">Erreur de connexion</string>
+    <string name="register">Register to save your favorite recipes !</string>
+    <string name="password_8_digit_mini">password (8 digit mini.)</string>
+    <string name="repeat_your_password">repeat your password</string>
+    <string name="sign_up">Sign up</string>
 </resources>

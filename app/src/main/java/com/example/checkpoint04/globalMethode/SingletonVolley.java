@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class SingletonVolley {
 
-    private final static String REQUEST_URL = "http://192.168.8.127:8080/recettes";
+    private final static String REQUEST_URL = "http://192.168.8.127:8080";
     private static SingletonVolley instance;
     private static Context ctx;
     private RequestQueue requestQueue;
@@ -53,8 +53,48 @@ public class SingletonVolley {
         GsonBuilder gsonBuilder = new GsonBuilder();
         final Gson gson = gsonBuilder.create();
         final String requestBody = gson.toJson(user);
-        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.POST, url, null,
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null,
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.i("Volley success", response.toString());
+                        User user = gson.fromJson(response.toString(), User.class);
+                        userListener.accept(user);
+                    }
+                },
+                new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("VOLLEY_ERROR", "onErrorResponse: " + error.getMessage());
+                        userListener.accept(null);
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+
+            @Override
+            public byte[] getBody() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    return requestBody == null ? null : requestBody.getBytes(StandardCharsets.UTF_8);
+                }
+                return null;
+            }
+        };
+        requestQueue.add(jsonObjectRequest);
+    }
+    public void createAccount(final User user, final Consumer<User> userListener) {
+        String url = REQUEST_URL + "/user/create";
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        final Gson gson = gsonBuilder.create();
+        final String requestBody = gson.toJson(user);
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null,
                 new Response.Listener<JSONObject>() {
 
                     @Override

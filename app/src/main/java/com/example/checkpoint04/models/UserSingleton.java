@@ -24,4 +24,8 @@ public class UserSingleton {
     public void initiateUser(Long idUser, String mail, String password, List<RecipeFav> recipeFavList) {
         user = new User(idUser, mail, password, recipeFavList);
     }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
