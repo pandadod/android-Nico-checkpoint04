@@ -1,4 +1,7 @@
-package com.example.checkpoint04.models;
+package com.example.checkpoint04.globalMethode;
+
+import com.example.checkpoint04.models.RecipeFav;
+import com.example.checkpoint04.models.User;
 
 import java.util.List;
 

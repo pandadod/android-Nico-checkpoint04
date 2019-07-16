@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.example.checkpoint04.globalMethode.SingletonVolley;
 import com.example.checkpoint04.models.User;
-import com.example.checkpoint04.models.UserSingleton;
+import com.example.checkpoint04.globalMethode.UserSingleton;
 import com.google.common.hash.Hashing;
 
 import java.nio.charset.Charset;
