@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">checkpoint04</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="welcome_to_recipes">Welcome to Recipes !</string>
+    <string name="log_in">Log In</string>
+    <string name="create_your_account">Create Your account</string>
+    <string name="logo">logo</string>
 </resources>
