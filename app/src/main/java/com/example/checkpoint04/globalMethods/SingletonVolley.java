@@ -187,8 +187,8 @@ public class SingletonVolley {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.i("Volley success", response.toString());
-                        User user = gson.fromJson(response.toString(), User.class);
-                        recipeFavConsumer.accept(recipeFav);
+                        RecipeFav recipe = gson.fromJson(response.toString(), RecipeFav.class);
+                        recipeFavConsumer.accept(recipe);
                     }
                 },
                 new Response.ErrorListener() {
@@ -212,6 +212,40 @@ public class SingletonVolley {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                     return requestBody == null ? null : requestBody.getBytes(StandardCharsets.UTF_8);
                 }
+                return null;
+            }
+        };
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    public void deleteRecipe(Long idUser, Long idRecipe, final Consumer<RecipeFav> recipeFavConsumer) {
+        String url = REQUEST_URL + "/recipes/" + idRecipe + "/" + idUser;
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.DELETE, url, null,
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                    }
+                },
+                new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("VOLLEY_ERROR", "onErrorResponse: " + error.getMessage());
+                        recipeFavConsumer.accept(null);
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+
+            @Override
+            public byte[] getBody() {
+
                 return null;
             }
         };

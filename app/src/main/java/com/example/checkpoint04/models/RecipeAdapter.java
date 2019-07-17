@@ -64,9 +64,17 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                             SingletonVolley.getInstance(viewHolder.view.getContext()).addRecipe(recipe, new Consumer<RecipeFav>() {
                                 @Override
                                 public void accept(RecipeFav recipeFav) {
-                                    Toast.makeText(viewHolder.view.getContext(), "Recipe added to your favourites", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(viewHolder.view.getContext(), R.string.add_to_favorites, Toast.LENGTH_SHORT).show();
                                 }
                             });
+                        }
+                    });
+                }
+                if (user != null && !(viewHolder.btAddFav.isChecked())) {
+                    SingletonVolley.getInstance(viewHolder.view.getContext()).deleteRecipe(user.getId(), recipe.getId(), new Consumer<RecipeFav>() {
+                        @Override
+                        public void accept(RecipeFav recipeFav) {
+                            Toast.makeText(viewHolder.view.getContext(), R.string.delete_favorites, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -83,6 +91,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         List<RecipeFav> recipeFavList = user.getRecipeFavs();
         for (int i = 0; i < recipeFavList.size(); i++) {
             if (recipe.getName().equals(recipeFavList.get(i).getName())) {
+                recipe.setId(recipeFavList.get(i).getId());
                 viewHolder.btAddFav.setChecked(true);
             }
         }
