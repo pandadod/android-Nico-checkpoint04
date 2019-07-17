@@ -40,7 +40,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         Glide.with(viewHolder.view).load(recipe.getImageUrl()) .into(viewHolder.ivImageRecipe);
         viewHolder.btAddFav.setChecked(false);
         viewHolder.recipeName.setText(recipe.getName());
-        viewHolder.btSeeTheRecipe.setOnClickListener(new View.OnClickListener() {
+        viewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent goToDetails = new Intent(v.getContext(), DetailsActivity.class);
@@ -66,7 +66,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView recipeName;
-        public Button btSeeTheRecipe;
         public ToggleButton btAddFav;
         public ImageView ivImageRecipe;
         public View view;
@@ -74,7 +73,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         public ViewHolder(View v) {
             super(v);
             recipeName = v.findViewById(R.id.tvRecipeName);
-            btSeeTheRecipe = v.findViewById(R.id.btSeeRecipe);
             btAddFav = v.findViewById(R.id.btAddFav);
             ivImageRecipe = v.findViewById(R.id.ivImageRecipe);
             view = v;
