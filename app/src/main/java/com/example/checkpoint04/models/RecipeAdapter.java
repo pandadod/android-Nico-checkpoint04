@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.bumptech.glide.Glide;
 import com.example.checkpoint04.R;
 import com.example.checkpoint04.activities.DetailsActivity;
 
@@ -36,6 +37,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final RecipeFav recipe = recipeList.get(i);
+        Glide.with(viewHolder.view).load(recipe.getImageUrl()) .into(viewHolder.ivImageRecipe);
         viewHolder.btAddFav.setChecked(false);
         viewHolder.recipeName.setText(recipe.getName());
         viewHolder.btSeeTheRecipe.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +69,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         public Button btSeeTheRecipe;
         public ToggleButton btAddFav;
         public ImageView ivImageRecipe;
+        public View view;
 
         public ViewHolder(View v) {
             super(v);
@@ -74,6 +77,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             btSeeTheRecipe = v.findViewById(R.id.btSeeRecipe);
             btAddFav = v.findViewById(R.id.btAddFav);
             ivImageRecipe = v.findViewById(R.id.ivImageRecipe);
+            view = v;
         }
     }
 }
