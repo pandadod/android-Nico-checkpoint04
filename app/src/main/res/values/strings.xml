@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">checkpoint04</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="welcome_to_recipes">Welcome to Recipes !</string>
+    <string name="log_in">Log In</string>
+    <string name="create_your_account">Create Your account</string>
+    <string name="logo">logo</string>
+    <string name="erreur">Erreur de connexion</string>
+    <string name="register">Register to save your favorite recipes !</string>
+    <string name="password_8_digit_mini">password (8 digit mini.)</string>
+    <string name="repeat_your_password">repeat your password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="error_filled">All fields must be filled!</string>
+    <string name="error_number_char">password must contains 8 characters mini!</string>
+    <string name="error_difference_password">Your passwords are differents!</string>
+    <string name="see_details">see details</string>
+    <string name="photo_recipe">photo recipe</string>
+    <string name="add_to_favorites">Recipe added to your favourites</string>
+    <string name="delete_favorites">Recipe delete from your favourites</string>
 </resources>
