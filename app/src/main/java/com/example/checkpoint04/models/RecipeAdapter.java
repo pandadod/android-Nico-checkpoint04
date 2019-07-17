@@ -2,18 +2,21 @@ package com.example.checkpoint04.models;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.util.Consumer;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.bumptech.glide.Glide;
 import com.example.checkpoint04.R;
 import com.example.checkpoint04.activities.DetailsActivity;
+import com.example.checkpoint04.globalMethods.SingletonVolley;
+import com.example.checkpoint04.globalMethods.UserSingleton;
 
 import java.util.List;
 
@@ -35,9 +38,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
         final RecipeFav recipe = recipeList.get(i);
-        Glide.with(viewHolder.view).load(recipe.getImageUrl()) .into(viewHolder.ivImageRecipe);
+        Glide.with(viewHolder.view).load(recipe.getImageUrl()).into(viewHolder.ivImageRecipe);
         viewHolder.btAddFav.setChecked(false);
         viewHolder.recipeName.setText(recipe.getName());
         viewHolder.view.setOnClickListener(new View.OnClickListener() {
@@ -48,11 +51,25 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                 v.getContext().startActivity(goToDetails);
             }
         });
-
+        final User user = UserSingleton.getInstance().getUser();
+        checkFavorites(user, recipe, viewHolder);
         viewHolder.btAddFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO : ajouter ou supprimer la recette dans la liste des favoris
+                if (user != null && viewHolder.btAddFav.isChecked()) {
+                    user.getRecipeFavs().add(recipe);
+                    SingletonVolley.getInstance(viewHolder.view.getContext()).modifyUser(user, new Consumer<User>() {
+                        @Override
+                        public void accept(User user) {
+                            SingletonVolley.getInstance(viewHolder.view.getContext()).addRecipe(recipe, new Consumer<RecipeFav>() {
+                                @Override
+                                public void accept(RecipeFav recipeFav) {
+                                    Toast.makeText(viewHolder.view.getContext(), "Recipe added to your favourites", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    });
+                }
             }
         });
     }
@@ -62,6 +79,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         return recipeList.size();
     }
 
+    private void checkFavorites(User user, RecipeFav recipe, ViewHolder viewHolder) {
+        List<RecipeFav> recipeFavList = user.getRecipeFavs();
+        for (int i = 0; i < recipeFavList.size(); i++) {
+            if (recipe.getName().equals(recipeFavList.get(i).getName())) {
+                viewHolder.btAddFav.setChecked(true);
+            }
+        }
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
