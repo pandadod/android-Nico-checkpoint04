@@ -25,7 +25,7 @@ public class HelperRecipe {
 
         final RequestQueue requestQueue = Volley.newRequestQueue(context);
 
-        String url = "https://www.food2fork.com/api/search?key=17d69d0ea1b6170f8727c22386abf1eb&q=all";
+        String url = "https://www.food2fork.com/api/search?key=ee5895fd6815a8ca564ca5b7d4f6f74a&q=all";
 
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET, url, null,
