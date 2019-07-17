@@ -4,16 +4,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class RecipeFav {
+
     private Long id;
-
     private String name;
-
     private String sourceUrl;
     private String imageUrl;
 
     private Set<User> users = new HashSet<>();
 
     public RecipeFav() {
+    }
+
+    public RecipeFav(String name, String sourceUrl, String imageUrl) {
+        this.name = name;
+        this.sourceUrl = sourceUrl;
+        this.imageUrl = imageUrl;
     }
 
     public Long getId() {

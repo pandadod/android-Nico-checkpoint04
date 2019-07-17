@@ -1,4 +1,4 @@
-package com.example.checkpoint04;
+package com.example.checkpoint04.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.checkpoint04.globalMethode.SingletonVolley;
+import com.example.checkpoint04.R;
+import com.example.checkpoint04.globalMethods.SingletonVolley;
 import com.example.checkpoint04.models.User;
-import com.example.checkpoint04.models.UserSingleton;
+import com.example.checkpoint04.globalMethods.UserSingleton;
 import com.google.common.hash.Hashing;
 
 import java.nio.charset.Charset;

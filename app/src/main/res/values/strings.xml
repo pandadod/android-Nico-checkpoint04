@@ -14,4 +14,8 @@
     <string name="error_filled">All fields must be filled!</string>
     <string name="error_number_char">password must contains 8 characters mini!</string>
     <string name="error_difference_password">Your passwords are differents!</string>
+    <string name="see_details">see details</string>
+    <string name="photo_recipe">photo recipe</string>
+    <string name="add_to_favorites">Recipe added to your favourites</string>
+    <string name="delete_favorites">Recipe delete from your favourites</string>
 </resources>
