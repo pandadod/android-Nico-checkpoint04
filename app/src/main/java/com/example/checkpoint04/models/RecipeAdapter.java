@@ -57,16 +57,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 if (user != null && viewHolder.btAddFav.isChecked()) {
-                    user.getRecipeFavs().add(recipe);
-                    SingletonVolley.getInstance(viewHolder.view.getContext()).modifyUser(user, new Consumer<User>() {
+                    recipe.getUsers().add(user);
+                    SingletonVolley.getInstance(viewHolder.view.getContext()).addRecipe(user.getId(), recipe, new Consumer<RecipeFav>() {
                         @Override
-                        public void accept(User user) {
-                            SingletonVolley.getInstance(viewHolder.view.getContext()).addRecipe(recipe, new Consumer<RecipeFav>() {
-                                @Override
-                                public void accept(RecipeFav recipeFav) {
-                                    Toast.makeText(viewHolder.view.getContext(), R.string.add_to_favorites, Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                        public void accept(RecipeFav recipeFav) {
+                            viewHolder.btAddFav.setChecked(true);
+                            Toast.makeText(viewHolder.view.getContext(), R.string.add_to_favorites, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -74,6 +70,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                     SingletonVolley.getInstance(viewHolder.view.getContext()).deleteRecipe(user.getId(), recipe.getId(), new Consumer<RecipeFav>() {
                         @Override
                         public void accept(RecipeFav recipeFav) {
+                            viewHolder.btAddFav.setChecked(false);
                             Toast.makeText(viewHolder.view.getContext(), R.string.delete_favorites, Toast.LENGTH_SHORT).show();
                         }
                     });

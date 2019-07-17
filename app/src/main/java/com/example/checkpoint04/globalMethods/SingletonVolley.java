@@ -175,9 +175,9 @@ public class SingletonVolley {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public void addRecipe(final RecipeFav recipeFav, final Consumer<RecipeFav> recipeFavConsumer) {
+    public void addRecipe(Long idUser, final RecipeFav recipeFav, final Consumer<RecipeFav> recipeFavConsumer) {
 
-        String url = REQUEST_URL + "/recipes";
+        String url = REQUEST_URL + "/recipes/" + idUser;
         GsonBuilder gsonBuilder = new GsonBuilder();
         final Gson gson = gsonBuilder.create();
         final String requestBody = gson.toJson(recipeFav);
