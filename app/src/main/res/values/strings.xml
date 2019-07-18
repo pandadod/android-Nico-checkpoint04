@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">checkpoint04</string>
+    <string name="app_name">Recipes</string>
     <string name="email">email</string>
     <string name="password">password</string>
     <string name="welcome_to_recipes">Welcome to Recipes !</string>
@@ -18,4 +18,7 @@
     <string name="photo_recipe">photo recipe</string>
     <string name="add_to_favorites">Recipe added to your favourites</string>
     <string name="delete_favorites">Recipe delete from your favourites</string>
+    <string name="log_out">Log out</string>
+    <string name="my_favorite_recipes">My favorite recipes</string>
+    <string name="confirm_close">Press the back button once again to close the application.</string>
 </resources>

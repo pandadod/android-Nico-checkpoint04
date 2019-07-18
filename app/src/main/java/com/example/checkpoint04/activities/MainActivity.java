@@ -11,13 +11,15 @@ import android.widget.Toast;
 
 import com.example.checkpoint04.R;
 import com.example.checkpoint04.globalMethods.SingletonVolley;
-import com.example.checkpoint04.models.User;
 import com.example.checkpoint04.globalMethods.UserSingleton;
+import com.example.checkpoint04.models.User;
 import com.google.common.hash.Hashing;
 
 import java.nio.charset.Charset;
 
 public class MainActivity extends AppCompatActivity {
+
+    int backButtonCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,5 +67,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(goToRegisterActivity);
             }
         });
+    }
+
+    public void onBackPressed() {
+        if (backButtonCount < 1) {
+            Toast.makeText(this, R.string.confirm_close, Toast.LENGTH_SHORT).show();
+            backButtonCount++;
+        } else {
+            finish();
+        }
     }
 }
