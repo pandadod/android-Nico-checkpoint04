@@ -70,11 +70,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        if (backButtonCount < 1) {
-            Toast.makeText(this, R.string.confirm_close, Toast.LENGTH_SHORT).show();
-            backButtonCount++;
-        } else {
-            finish();
-        }
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
